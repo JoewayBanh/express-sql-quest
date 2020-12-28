@@ -33,55 +33,14 @@ app.get("/all", (req, res) => {
     })
 });
 
-app.get("/all/name", (req, res) => {
+app.get("/all/:id", (req, res) => {
+  const id = req.params.id
   connection.query(
-    "select name from express_sql",
-    (err, results) => {
+    "select * from express_sql where id=?",
+    [id], (err, results) => {
       if (err) {
         console.log(err);
-        res.status(500).send("Error retrieving name");
-      } else {
-        console.log(results)
-        res.status(200).json(results);
-      }
-    }
-  );
-});
-app.get("/all/age", (req, res) => {
-  connection.query(
-    "select age from express_sql",
-    (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error retrieving age");
-      } else {
-        console.log(results)
-        res.status(200).json(results);
-      }
-    }
-  );
-});
-app.get("/all/birthday", (req, res) => {
-  connection.query(
-    "select birthday from express_sql",
-    (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error retrieving birthday");
-      } else {
-        console.log(results)
-        res.status(200).json(results);
-      }
-    }
-  );
-});
-app.get("/all/male", (req, res) => {
-  connection.query(
-    "select male from express_sql",
-    (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error retrieving gender");
+        res.status(500).send("Error retrieving data from this is id.");
       } else {
         console.log(results)
         res.status(200).json(results);

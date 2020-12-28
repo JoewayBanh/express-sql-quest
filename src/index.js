@@ -35,8 +35,48 @@ app.get("/all", (req, res) => {
     })
 });
 
+app.get("/all/name", (req, res) => {
+  connection.query(
+    "select name from express_SQL", (err, results) => {
+      if (err) {
+        res.status(500).send("Error retrieving all names");
+      } else {
+        res.status(200).json(results);
+      }
+    })
+});
+app.get("/all/age", (req, res) => {
+  connection.query(
+    "select age from express_SQL", (err, results) => {
+      if (err) {
+        res.status(500).send("Error retrieving all ages");
+      } else {
+        res.status(200).json(results);
+      }
+    })
+});
+app.get("/all/birthday", (req, res) => {
+  connection.query(
+    "select birthday from express_SQL", (err, results) => {
+      if (err) {
+        res.status(500).send("Error retrieving all birthdays");
+      } else {
+        res.status(200).json(results);
+      }
+    })
+});
+app.get("/all/male", (req, res) => {
+  connection.query(
+    "select male from express_SQL", (err, results) => {
+      if (err) {
+        res.status(500).send("Error retrieving data on genders");
+      } else {
+        res.status(200).json(results);
+      }
+    })
+});
 
-app.get("/all/:id", (req, res) => {
+app.get("/all-from/:id", (req, res) => {
   const id = req.params.id
   connection.query(
     "select * from express_sql where id=?",

@@ -18,9 +18,11 @@ connection.connect(function (err) {
 });
 
 
+
 app.get("/", (req, res) => {
   res.send("This is the express+SQL quest");
 });
+
 
 app.get("/all", (req, res) => {
   connection.query(
@@ -32,6 +34,7 @@ app.get("/all", (req, res) => {
       }
     })
 });
+
 
 app.get("/all/:id", (req, res) => {
   const id = req.params.id
@@ -48,6 +51,7 @@ app.get("/all/:id", (req, res) => {
     }
   );
 });
+
 
 app.get("/filter/contains", (req, res) => {
   connection.query(
@@ -92,6 +96,7 @@ app.get("/filter/greater", (req, res) => {
   );
 });
 
+
 app.get("/all/ascending", (req, res) => {
   connection.query(
     "select * from express_sql order by name asc",
@@ -106,6 +111,7 @@ app.get("/all/ascending", (req, res) => {
     }
   );
 });
+
 
 app.post("/", (req, res) => {
   const { name, age, birthday, male } = req.body;
@@ -122,6 +128,7 @@ app.post("/", (req, res) => {
     }
   );
 });
+
 
 app.put("/update/:id", (req, res) => {
   const id = req.params.id
@@ -140,6 +147,7 @@ app.put("/update/:id", (req, res) => {
   );
 });
 
+
 app.put("/update/toggle/:id", (req, res) => {
   const id = req.params.id
 
@@ -156,6 +164,7 @@ app.put("/update/toggle/:id", (req, res) => {
   );
 });
 
+
 app.delete("/delete/:id", (req, res) => {
   const id = req.params.id
 
@@ -171,6 +180,7 @@ app.delete("/delete/:id", (req, res) => {
     }
   );
 });
+
 
 app.delete("/delete-false", (req, res) => {
   connection.query(
